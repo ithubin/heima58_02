@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03_angular控制器</title>
+    <script src="plugins/angularjs/angular.min.js"></script>
+    <script type="text/javascript">
+
+        //定义模块
+        var app = angular.module("pyg",[]);
+        
+        //在模块下定义控制器
+        app.controller("helloController",function ($scope) {
+
+            //所有函数绑定在数据模型对象中$scope
+            //定义在控制器中
+            $scope.showName = function () {
+                return "hello,angularJS采用模块化设计方案!";
+            }
+            
+            //定义函数
+            $scope.hello = function () {
+                return "您好！欢迎来到angularJS世界!";
+            }
+        })
+
+    </script>
+</head>
+<!--
+    1,ng-app:把指令所在闭合标签中所有元素交给angularJS管理
+    2,{{}}:取值表达式，插值表达式
+    3,ng-model:绑定表单参数
+    4,ng-controller:指定使用哪个控制器函数 （控制器的所在闭合标签都属于此控制器管理范围）
+-->
+<body ng-app="pyg">
+    <h1 ng-controller="helloController">
+        {{showName()}}<br>
+        {{hello()}}
+    </h1>
+</body>
+</html>

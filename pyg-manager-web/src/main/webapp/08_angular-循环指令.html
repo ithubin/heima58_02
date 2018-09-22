@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08_angular-循环指令</title>
+    <script src="plugins/angularjs/angular.min.js"></script>
+    <script type="text/javascript">
+
+        //定义模块
+        var app = angular.module("pyg", []);
+
+        //在模块下定义控制器
+        app.controller("helloController", function ($scope) {
+
+            //所有函数绑定在数据模型对象中$scope
+            //定义在控制器中
+            $scope.sum = function () {
+                $scope.z = parseInt($scope.a) + parseInt($scope.b);
+            };
+
+            //定义数组
+            $scope.list = ["张飞", "刘备", "关羽", "赵本山"];
+            //定义数组对象
+            $scope.userList = [{name: '张三', shuxue: 100, yuwen: 93},
+                {name: '李四', shuxue: 88, yuwen: 87},
+                {name: '王五', shuxue: 77, yuwen: 56}
+            ];
+        })
+
+    </script>
+</head>
+<!--
+    1,ng-app:把指令所在闭合标签中所有元素交给angularJS管理
+    2,{{}}:取值表达式，插值表达式
+    3,ng-model:绑定表单参数
+    4,ng-controller:指定使用哪个控制器函数 （控制器的所在闭合标签都属于此控制器管理范围）
+    5,ng-repeat : 用来循环数组数据，或者是集合数据
+-->
+<body ng-app="pyg" ng-controller="helloController">
+<ul>
+    <li ng-repeat="xx in list">
+        {{xx}}
+    </li>
+</ul>
+
+<ul>
+    <li ng-repeat="entity in userList">
+        {{entity.name}} // {{entity.shuxue}} //{{entity.yuwen}}
+    </li>
+</ul>
+</body>
+</html>
