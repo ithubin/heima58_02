@@ -10,6 +10,7 @@ import com.pyg.utils.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by on 2018/9/17.
@@ -71,6 +72,15 @@ public class BrandServiceImpl implements BrandService {
         for (Long id : ids) {
             brandMapper.deleteByPrimaryKey(id);
         }
+    }
+
+    /**
+     * 需求：查询品牌数据，进行下拉框列表展示，进行多项选择
+     * [{"id":27,"text":"网络"},{"id":32,"text":"机身内存"}]
+     */
+    public List<Map> findBrandList() {
+        List<Map> list = brandMapper.findBrandList();
+        return list;
     }
 
 

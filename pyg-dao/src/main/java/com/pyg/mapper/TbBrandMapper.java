@@ -3,6 +3,8 @@ package com.pyg.mapper;
 import com.pyg.pojo.TbBrand;
 import com.pyg.pojo.TbBrandExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface TbBrandMapper {
@@ -27,4 +29,10 @@ public interface TbBrandMapper {
     int updateByPrimaryKeySelective(TbBrand record);
 
     int updateByPrimaryKey(TbBrand record);
+
+    /**
+     * 需求：查询品牌数据，进行下拉框列表展示，进行多项选择
+     * [{"id":27,"text":"网络"},{"id":32,"text":"机身内存"}]
+     */
+    public List<Map> findBrandList();
 }

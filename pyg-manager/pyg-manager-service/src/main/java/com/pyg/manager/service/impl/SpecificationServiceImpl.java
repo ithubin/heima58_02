@@ -14,6 +14,7 @@ import com.pyg.vo.Specification;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by on 2018/9/17.
@@ -151,6 +152,15 @@ public class SpecificationServiceImpl implements SpecificationService {
             //删除规格
             specificationMapper.deleteByPrimaryKey(id);
         }
+    }
+
+    /*
+  * 需求：查询规格属性，进行多项选择
+  * */
+    public List<Map> findSpecList() {
+        List<Map> specList = specificationMapper.findSpecList();
+        //返回
+        return specList;
     }
 
 

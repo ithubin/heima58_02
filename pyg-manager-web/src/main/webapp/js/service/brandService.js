@@ -32,6 +32,10 @@ app.service("brandService", function ($http) {
     this.dele = function (ids) {
         //使用内置服务发送请求，实现删除
         return $http.get("../brand/dele/" + ids);
+    };
+    //查询品牌数据，进行多项选择
+    this.findBrandList = function () {
+        return $http.get("../brand/findBrandList");
     }
 
 })

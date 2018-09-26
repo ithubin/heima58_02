@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by on 2018/9/17.
@@ -109,7 +110,7 @@ public class BrandController {
      * 需求：品牌数据删除
      */
     @RequestMapping("dele/{ids}")
-    public PygResult dele(@PathVariable Long[] ids){
+    public PygResult dele(@PathVariable Long[] ids) {
         try {
             //调用远程服务方法，实现品牌删除
             brandService.delete(ids);
@@ -121,5 +122,14 @@ public class BrandController {
         }
     }
 
+    /**
+     * 需求：查询品牌数据，进行下拉框列表展示，进行多项选择
+     * [{"id":27,"text":"网络"},{"id":32,"text":"机身内存"}]
+     */
+    @RequestMapping("findBrandList")
+    public List<Map> findBrandList() {
+        List<Map> brandList = brandService.findBrandList();
+        return brandList;
+    }
 
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+    <!--1,放行静态资源，不需要安全认证的资源-->
+    <http pattern="/css/**" security="none"></http>
+    <http pattern="/img/**" security="none"></http>
+    <http pattern="/js/**" security="none"></http>
+    <http pattern="/plugins/**" security="none"></http>
+    <http pattern="/login.html" security="none"></http>
+    <http pattern="/login_error.html" security="none"></http>
+    <!--2,配置拦截规则-->
+    <http>
+        <!--指定拦截规则-->
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')"></intercept-url>
+        <!--指定登录页面，失败页面地址，成功页面地址-->
+        <!--
+        login-page:指定登录页面
+        default-target-url：指定登录成功后跳转的页面
+        always-use-default-target：登录成功始终跳转到default-target指定的页面
+        authentication-failure-url：认证失败跳转的页面
+        -->
+        <form-login login-page="/login.html"
+                    default-target-url="/admin/index.html"
+                    authentication-failure-url="/login_error.html"
+                    always-use-default-target="true"></form-login>
+
+        <!--跨域攻击关闭-->
+        <csrf disabled="true"></csrf>
+        <!--iframe框架访问-->
+        <headers>
+            <frame-options policy="SAMEORIGIN"></frame-options>
+        </headers>
+        <!--安全认证退出-->
+        <logout logout-success-url="/login.html"></logout>
+    </http>
+    <!--3,认证管理器，权限认证-->
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="fengjie" password="admin" authorities="ROLE_USER"></user>
+                <user name="tangseng" password="admin" authorities="ROLE_USER"></user>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+</beans:beans>

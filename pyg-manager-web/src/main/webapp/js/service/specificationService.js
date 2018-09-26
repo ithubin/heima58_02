@@ -32,6 +32,10 @@ app.service("specificationService", function ($http) {
     this.dele = function (ids) {
         //使用内置服务发送请求，实现删除
         return $http.get("../specification/dele/" + ids);
+    };
+    //加载规格多项选择下拉框
+    this.findSpecList = function () {
+        return $http.get("../specification/findSpecList");
     }
 
 })

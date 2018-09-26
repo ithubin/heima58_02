@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by on 2018/9/17.
@@ -110,7 +111,7 @@ public class SpecificationController {
      * 需求：规格数据删除
      */
     @RequestMapping("dele/{ids}")
-    public PygResult dele(@PathVariable Long[] ids){
+    public PygResult dele(@PathVariable Long[] ids) {
         try {
             //调用远程服务方法，实现规格删除
             specificationService.delete(ids);
@@ -123,4 +124,13 @@ public class SpecificationController {
     }
 
 
+    /*
+     * 需求：查询规格属性，进行多项选择
+     * */
+    @RequestMapping("findSpecList")
+    public List<Map> findSpecList() {
+        //调用远程服务方法，查询
+        List<Map> specList = specificationService.findSpecList();
+        return specList;
+    }
 }

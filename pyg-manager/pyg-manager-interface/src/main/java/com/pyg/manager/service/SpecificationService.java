@@ -6,6 +6,7 @@ import com.pyg.utils.PageResult;
 import com.pyg.vo.Specification;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by on 2018/9/17.
@@ -39,4 +40,9 @@ public interface SpecificationService {
      * 需求：规格数据删除
      */
     public void delete(Long[] ids);
+
+    /*
+   * 需求：查询规格属性，进行多项选择
+   * */
+    public List<Map> findSpecList();
 }
